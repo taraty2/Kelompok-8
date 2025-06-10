@@ -161,7 +161,18 @@ class JurusanDecisionTreeApp:
         self.detail_label.config(text=detail)
         self.detail_label.place(relx=0.5, rely=0.5, anchor="n")
 
+def print_tree_structure():
+    print("Struktur Pohon Keputusan Berdasarkan Excel:\n")
+    grouped = df.groupby(["Minat", "Minat Spesifik"])
+    for (minat, minat_spesifik), group in grouped:
+        print(f"Minat: {minat}")
+        print(f"Minat Spesifik: {minat_spesifik}")
+        for jurusan in group["Jurusan"]:
+            print(f"    - {jurusan}")
+        print()
+
 if __name__ == "__main__":
+    print_tree_structure()
     root = tk.Tk()
     app = JurusanDecisionTreeApp(root)
     root.mainloop()
